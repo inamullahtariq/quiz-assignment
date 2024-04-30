@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#container {
+    background-color: lightblue; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+}
+
+#GenerateNumberDiv {
+    margin-top: 20px;
+}
+
+#operators, #calculate, #quit {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: green; 
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#operators:hover, #calculate:hover, #quit:hover {
+    background-color: lightgray; 
+}
+
+#resultLabel {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#answer {
+    font-size: 24px;
+    color: blue;
+}
+
+#status {
+    font-size: 16px;
+    margin-top: 10px;
+}

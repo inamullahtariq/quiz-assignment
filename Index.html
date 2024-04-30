@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="viewport" width="device-width">
+    <title>Quiz Math</title>     
+    <link rel="stylesheet" href="style.css">   
+    
+</head>
+<body>
+
+<div>
+    <h1 style="text-align: top;">Math Quiz</h1>
+</div>
+
+<div id="container">
+    <div id="GenerateNumberDiv">
+        <select id="operators">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>            
+    
+        <button id="calculate" onclick="performCal()">Calculate</button>
+        <button id="quit" onclick="displayResult()">Quit</button>
+
+        <p>The numbers are <span id="no1"></span> <span id="operatorValue"></span> <span id ="no2"></span></p>
+        
+        <label id="resultLabel">Result:</label>
+
+        <span id="answer"></span>
+        <p id="status"></p>
+    </div>
+</div>
+
+<script>
+    var totalQuestions = 0;
+    var correctAnswers = 0;
+    var solved = 0;
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min) ) + min;
+    }
+
+    function gen(){
+        var op = document.getElementById('operators').value;
+        var n1=document.getElementById('no1');
+        n1.innerHTML=getRndInteger(0,100);
+        var n2=document.getElementById('no2');
+        n2.innerHTML=getRndInteger(0,100);
+
+        document.getElementById('operatorValue').innerHTML = op;
+        document.getElementById('answer').innerHTML = "";
+    }
+
+    function performCal(){
+        var oper = document.getElementById('operators').value;
+        var n1 = parseInt(document.getElementById('no1').innerHTML);
+        var n2 = parseInt(document.getElementById('no2').innerHTML);
+
+        var ans;
+        switch(oper){
+            case '+':
+                ans = n1 + n2;
+                break;
+            case '-':
+                ans = n1 - n2;
+                break;
+            case '*':
+                ans = n1 * n2;
+                break;
+            case '/':
+                ans = n1 / n2;
+                break;
+            default:
+                ans = "No such Operator";
+        }
+
+        totalQuestions++;
+        var userAnswer = parseInt(prompt("What is the answer?"));
+        if(userAnswer === ans){
+            correctAnswers++;
+            solved++;
+        }
+        
+        document.getElementById('answer').innerHTML = ans;
+        document.getElementById('status').innerHTML = "Total Questions: " + totalQuestions + " | Solved: " + solved;
+        
+        if(totalQuestions === 10){
+            displayResult();
+        } else {
+            gen();
+        }
+    }
+
+    function displayResult() {
+        var score = (correctAnswers / totalQuestions * 100).toFixed(2); 
+        alert("Quiz completed! Your score: " + score + "%");
+    }
+    gen();
+</script>
+</body>
+</html>
